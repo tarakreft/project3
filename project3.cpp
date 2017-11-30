@@ -1,4 +1,4 @@
-//  project2.cpp
+//  project3.cpp
 //
 //  Created by Tara Kreft
 //
@@ -12,8 +12,9 @@ using namespace std;
 
 const int maxChar = 20;
 
-//struct song model
-struct song {
+//class song model
+class song {
+public:
     char   songTitle[maxChar];
     char   artistName[maxChar];
     char   songMins[4];
@@ -21,14 +22,33 @@ struct song {
     char   albumTitle[maxChar];
     int    index;
 };
-void addSong(song& addedSong, song songList[], int& songListSize);
+
+//songlist Model
+class songList {
+public:
+    song songList[songListSize];
+    void setSongListSize(int maxList);
+    void addSong(song& addedSong, song songList[], int& songListSize);
+    void displaySongs(song songList[], int& songListSize);
+    void addNewSong(char fileName[], song songList[], int& songListSize);
+    void removeSong(char fileName[], song songList[], int& songListSize);
+private:
+    int songListSize;
+}
+
 void saveLibrary(char fileName[], song songList[], int& songListSize);
 void readLibrary(char fileName[], song songList[], int& songListSize);
-void displaySongs(song songList[], int& songListSize);
-void addNewSong(char fileName[], song songList[], int& songListSize);
-void removeSong(char fileName[], song songList[], int& songListSize);
 void searchForArtist(song songList[], int& songListSize);
 void searchForAlbum(song songList[], int& songListSize);
+
+//set the array size in songList
+songList::setSongListSize(int maxList){
+    if(maxList >= 0){
+        songListSize = maxList;
+    } else {
+        maxList = 100;
+    }
+}
 
 //add a song to the library
 void addSong(song& addedSong, song songList[], int& songListSize){
