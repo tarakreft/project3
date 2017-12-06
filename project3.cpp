@@ -10,39 +10,9 @@
 
 using namespace std;
 
-const int maxChar = 20;
-
-//class song model
-class song {
-public:
-    char   songTitle[maxChar];
-    char   artistName[maxChar];
-    char   songMins[4];
-    char   songSecs[4];
-    char   albumTitle[maxChar];
-    int    index;
-};
-
-//songlist Model
-class songList {
-public:
-    song songList[songListSize];
-    void setSongListSize(int maxList);
-    void addSong(song& addedSong, song songList[], int& songListSize);
-    void displaySongs(song songList[], int& songListSize);
-    void addNewSong(char fileName[], song songList[], int& songListSize);
-    void removeSong(char fileName[], song songList[], int& songListSize);
-private:
-    int songListSize;
-}
-
-void saveLibrary(char fileName[], song songList[], int& songListSize);
-void readLibrary(char fileName[], song songList[], int& songListSize);
-void searchForArtist(song songList[], int& songListSize);
-void searchForAlbum(song songList[], int& songListSize);
 
 //set the array size in songList
-songList::setSongListSize(int maxList){
+void songList::setSongListSize(int maxList){
     if(maxList >= 0){
         songListSize = maxList;
     } else {
@@ -78,54 +48,6 @@ void saveLibrary(char fileName[], song songList[], int& songListSize){
     }
     
     outfile.close();
-}
-
-//read the song library file
-void readLibrary(char fileName[], song songList[], int& songListSize){
-    songListSize = 0;
-    ifstream infile;
-    char     songTitle[maxChar];
-    char     artistName[maxChar];
-    char     songMins[4];
-    char     songSecs[4];
-    char     albumTitle[maxChar];
-    int      index;
-    song     addedSong;
-    
-    infile.open(fileName);
-    
-    if(!infile){
-        infile.clear();
-        cout << "Could not open at this time." << endl;
-        return;
-    }
-    
-    while(infile.peek() != EOF){
-        infile.get(songTitle, maxChar, ';');
-        infile.get();
-        infile.get(artistName, maxChar, ';');
-        infile.get();
-        infile.get(songMins, 4, ';');
-        infile.get();
-        infile.get(songSecs, 4, ';');
-        infile.get();
-        infile.get(albumTitle, maxChar, ';');
-        infile.ignore(100, '\n');
-        
-        strncpy(addedSong.songTitle, songTitle, maxChar);
-        strncpy(addedSong.artistName, artistName, maxChar);
-        strncpy(addedSong.songMins, songMins, 4);
-        strncpy(addedSong.songSecs, songSecs, 4);
-        strncpy(addedSong.albumTitle, albumTitle, maxChar);
-        addedSong.index = songListSize;
-        addSong(addedSong, songList, songListSize);
-        
-        if(infile.peek() == EOF){
-            return;
-        }
-    }
-    
-    infile.close();
 }
 
 //display all songs
@@ -240,62 +162,11 @@ void removeSong(char fileName[], song songList[], int& songListSize){
     saveLibrary(fileName, songList, songListSize);
 }
 
-// search for songs by artist
-void searchForArtist(song songList[], int& songListSize){
-    char searchTerm[maxChar];
-    int matches = 0;
-    
-    cout << "enter the artist you would like to search for: " << endl;
-    
-    cin.getline(searchTerm, maxChar, '\n');
-    while(!cin){
-        cin.clear();
-        cin.ignore(maxChar, '\n');
-        cout << "Too Long. Please re-enter the artist:" << endl;
-        cin.getline(searchTerm, maxChar, '\n');
-    }
 
-    cout << left << setw(maxChar) << "Song Title" << setw(maxChar) << "Artist Name" << setw(7) << "Mins" << setw(1) << " " << setw(7) << "Secs" << setw(maxChar) << "Album Title" << setw(5) << "index" << endl;
-    
-    for(int i=0; i < songListSize; i++){
-        if(strcmp(searchTerm,songList[i].artistName) == 0){
-            matches++;
-            cout << left << setw(maxChar) << songList[i].songTitle << setw(maxChar) << songList[i].artistName << setw(7) << songList[i].songMins << setw(1) << " " << setw(7) << songList[i].songSecs << setw(maxChar) << songList[i].albumTitle << setw(5) << songList[i].index << endl;
-        }
-    }
-    
-    if(matches == 0){
-        cout << "I'm sorry, there are no matches for that artist" << endl;
-    }
-}
 
 //search for songs by album
 void searchForAlbum(song songList[], int& songListSize){
-    char searchTerm[maxChar];
-    int matches = 0;
     
-    cout << "enter the album you would like to search for: " << endl;
-    
-    cin.getline(searchTerm, maxChar, '\n');
-    while(!cin){
-        cin.clear();
-        cin.ignore(maxChar, '\n');
-        cout << "Too Long. Please re-enter the album:" << endl;
-        cin.getline(searchTerm, maxChar, '\n');
-    }
-    
-    cout << left << setw(maxChar) << "Song Title" << setw(maxChar) << "Artist Name" << setw(7) << "Mins" << setw(1) << " " << setw(7) << "Secs" << setw(maxChar) << "Album Title" << setw(5) << "index" << endl;
-    
-    for(int i=0; i < songListSize; i++){
-        if(strcmp(searchTerm,songList[i].albumTitle) == 0){
-            matches++;
-            cout << left << setw(maxChar) << songList[i].songTitle << setw(maxChar) << songList[i].artistName << setw(7) << songList[i].songMins << setw(1) << " " << setw(7) << songList[i].songSecs << setw(maxChar) << songList[i].albumTitle << setw(5) << songList[i].index << endl;
-        }
-    }
-    
-    if(matches == 0){
-        cout << "I'm sorry, there are no matches for that album" << endl;
-    }
 }
 
 int displayChoices(){
