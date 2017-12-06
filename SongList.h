@@ -17,16 +17,14 @@ public:
     SongList();
     SongList(const char fileName[]);
     
-    void readLibrary(char fileName[]);
+    void readLibrary(const char fileName[]);
+    void saveLibrary(const char fileName[]) const;
     int  setSongListSize() const;
-    void searchForArtist(const char searchTerm[], Song& matchingSong) const;
-    void searchForAlbum(const char searchTerm[], Song& matchingSong) const;
-    
-    void addSong(song& addedSong, song songList[], int& songListSize);
-    void displaySongs(song songList[], int& songListSize);
-    void addNewSong(char fileName[], song songList[], int& songListSize);
-    void removeSong(char fileName[], song songList[], int& songListSize);
-    void saveLibrary(char fileName[], song songList[], int& songListSize);
+    void searchForArtist() const;
+    void searchForAlbum() const;
+    void displaySongs() const;
+    void addSong(const char fileName[], const song& addedSong);
+//    void removeSong(const char fileName[], song songList[]);
     
 private:
     Song listOfSongs[maxList];
