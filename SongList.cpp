@@ -60,7 +60,7 @@ SongList::readLibrary(const char fileName[]){
         addedSong.setAlbumTitle(albumTitle);
         addedSong.setIndex(songListSize);
         
-        addSong(addedSong);
+        addSong(fileName, addedSong);
         
         if(infile.peek() == EOF){
             return;
@@ -177,8 +177,6 @@ SongList::addSong(const char fileName[], const song& addedSong){
     listOfSongs[songListSize].setIndex(index);
     
     songListSize++;
-    
-    listOfSongs.saveLibrary(fileName);
 }
 
 //remove a song
@@ -215,7 +213,6 @@ Songlist::removeSong(const char fileName[], song songList[]){
     
     cout << "the song with index " << removeableIndex << " has been removed." << endl;
     
-    listOfSongs.saveLibrary(fileName);
 }
 
 //search by artist

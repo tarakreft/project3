@@ -23,7 +23,7 @@ public:
     void searchForArtist() const;
     void searchForAlbum() const;
     void displaySongs() const;
-    void addSong(const char fileName[], const song& addedSong);
+    void addSong(const char fileName[], const Song& addedSong);
 //    void removeSong(const char fileName[], song songList[]);
     
 private:

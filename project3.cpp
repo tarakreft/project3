@@ -30,9 +30,9 @@ int displayChoices(){
     return usersChoice;
 }
 
-void runUserChoice(int programChoice, char fileName[], SongList library(fileName)){
+void runUserChoice(int programChoice, char fileName[], SongList library){
     
-    song     addedSong;
+    Song     addedSong;
     char     songTitle[maxChar];
     char     artistName[maxChar];
     int      songMins;
@@ -43,11 +43,12 @@ void runUserChoice(int programChoice, char fileName[], SongList library(fileName
     switch(programChoice){
         case 1:
             cout << "you have chosen option 1:" << endl;
-            libary.displaySongs();
+            library.displaySongs();
             break;
         case 2:
             cout << "you have chosen option 2:" << endl;
 //            library.removeSong(fileName, songList...);
+            library.saveLibrary(fileName);
             break;
         case 3:
             cout << "you have chosen option 3:" << endl;
@@ -59,7 +60,8 @@ void runUserChoice(int programChoice, char fileName[], SongList library(fileName
             break;
         case 5:
             cout << "you have chosen option 5:" << endl;
-            addNewSong(fileName, songList, songListSize);
+            library.addSong(fileName, addedSong);
+            library.saveLibrary(fileName);
             break;
         case 6:
             cout << endl;
@@ -75,7 +77,7 @@ int main()
     char     fileName[] = "songs.txt";
     SongList library(fileName);
     
-    readLibrary(fileName);
+    library.readLibrary(fileName);
     
     cout << "Welcome to the music library interface!" << endl;
     
