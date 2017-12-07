@@ -78,7 +78,7 @@ void Song::setSongSecs(const int songSecs){
     this->songSecs = songSecs;
 }
 
-void Song::setAlbumTitle(const char albumtTitle[]){
+void Song::setAlbumTitle(const char albumTitle[]){
     strcpy(this->albumTitle, albumTitle);
 }
 
