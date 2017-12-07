@@ -84,8 +84,6 @@ void SongList::readLibrary(const char fileName[]){
         listOfSongs[songListSize].setAlbumTitle(albumTitle);
         listOfSongs[songListSize].setIndex(index);
         
-        addedSong.printSong();
-        
         songListSize++;
         
         if(infile.peek() == EOF){
@@ -340,7 +338,7 @@ void SongList::displaySongs() const{
     char   albumTitle[maxChar];
     int    index;
     int    listSize = getSongListSize();
-    cout << listSize << endl;
+    
     cout << left << setw(maxChar) << "Song Title" << setw(maxChar) << "Artist Name" << setw(7) << "Mins" << setw(1) << " " << setw(7) << "Secs" << setw(maxChar) << "Album Title" << setw(5) << "index" << endl;
     
     for(int i = 0; i < listSize; i++){
