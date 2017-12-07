@@ -13,6 +13,9 @@
 
 using namespace std;
 
+void runUserChoice(int programChoice, char fileName[], SongList library);
+int displayChoices();
+
 int displayChoices(){
     int usersChoice;
     cout << "\n" << "\n" << "What would you like to do? Please enter a number from the following key:" << endl;
@@ -60,7 +63,7 @@ void runUserChoice(int programChoice, char fileName[], SongList library){
             break;
         case 5:
             cout << "you have chosen option 5:" << endl;
-            library.addSong(fileName, addedSong);
+            library.addSong(addedSong);
             library.saveLibrary(fileName);
             break;
         case 6:
@@ -77,7 +80,7 @@ int main()
     char     fileName[] = "songs.txt";
     SongList library(fileName);
     
-    library.readLibrary(fileName);
+//    library.readLibrary(fileName);
     
     cout << "Welcome to the music library interface!" << endl;
     

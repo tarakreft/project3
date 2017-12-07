@@ -13,31 +13,31 @@ using namespace std;
 
 //default constructor
 Song::Song(){
-    strncpy(songTitle, "no Title");
-    strncpy(artistName, "no Artist");
+    strcpy(songTitle, "no Title");
+    strcpy(artistName, "no Artist");
     songMins = 0;
     songSecs = 0;
-    strncpy(albumTitle, "no Album");
+    strcpy(albumTitle, "no Album");
     index = 0;
 }
 
 //constructor
 Song::Song(char songTitle[], char artistName[], int songMins, int songSecs, char albumTitle[], int index){
-    strncpy(this->songTitle, songTitle);
-    strncpy(this->artistName, artistName);
+    strcpy(this->songTitle, songTitle);
+    strcpy(this->artistName, artistName);
     this->songMins = songMins;
     this->songSecs = songSecs;
-    strncpy(this->albumTitle, albumTitle);
+    strcpy(this->albumTitle, albumTitle);
     this->index = index;
 }
 
 //following functions will returns each parameter
 void Song::getSongTitle(char songTitle[]) const{
-    strncpy(songTitle, this->songTitle);
+    strcpy(songTitle, this->songTitle);
 }
 
 void Song::getArtistName(char artistName[]) const{
-    strncpy(artistName, this->artistName);
+    strcpy(artistName, this->artistName);
 }
 
 void Song::getSongMins(int songMins) const{
@@ -48,9 +48,10 @@ void Song::getSongSecs(int songSecs) const{
     songSecs = this->songSecs;
 }
 
-void Song::getAlbumTitle(char albumtTitle[]) const{
-    strncpy(albumTitle, this->albumTitle);
+void Song::getAlbumTitle(char albumTitle[]) const{
+    strcpy(albumTitle, this->albumTitle);
 }
+
 void Song::getIndex(int index) const{
     index = this->index;
 }
@@ -62,11 +63,11 @@ void Song::printSong() const{
 
 //following functions set the song values
 void Song::setSongTitle(const char songTitle[]){
-    strncpy(this->songTitle, songTitle);
+    strcpy(this->songTitle, songTitle);
 }
 
 void Song::setArtistName(const char artistName[]){
-    strncpy(this->artistName, artistName);
+    strcpy(this->artistName, artistName);
 }
 
 void Song::setSongMins(const int songMins){
@@ -78,7 +79,7 @@ void Song::setSongSecs(const int songSecs){
 }
 
 void Song::setAlbumTitle(const char albumtTitle[]){
-    strncpy(this->albumTitle, albumTitle);
+    strcpy(this->albumTitle, albumTitle);
 }
 
 void Song::setIndex(const int index){

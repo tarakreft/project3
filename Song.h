@@ -13,7 +13,7 @@ const int maxChar = 20;
 class Song {
 public:
     Song();
-    Song(char songTitle[], char artistName[], char songMins[], char songSecs[], char albumTitle[], int index);
+    Song(char songTitle[], char artistName[], int songMins, int songSecs, char albumTitle[], int index);
     
     void getSongTitle(char songTitle[]) const;
     void getArtistName(char artistName[]) const;

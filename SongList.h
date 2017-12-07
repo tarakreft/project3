@@ -19,12 +19,12 @@ public:
     
     void readLibrary(const char fileName[]);
     void saveLibrary(const char fileName[]) const;
-    int  setSongListSize() const;
+    int  getSongListSize() const;
+    void addSong(const Song& addedSong);
+//    void removeSong(const Song& addedSong);
     void searchForArtist() const;
     void searchForAlbum() const;
     void displaySongs() const;
-    void addSong(const char fileName[], const Song& addedSong);
-//    void removeSong(const char fileName[], song songList[]);
     
 private:
     Song listOfSongs[maxList];
