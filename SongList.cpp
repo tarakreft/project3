@@ -269,17 +269,10 @@ void SongList::addSong(const Song& addedSong){
 //}
 
 //search by artist
-//SongList::searchForArtist(const char searchTerm[], Song& matchingSong){
 void SongList::searchForArtist() const {
     char searchTerm[maxChar];
-    char currentArtist[maxChar];
-//    char   songTitle[maxChar];
-    char   artistName[maxChar];
-//    int    songMins;
-//    int    songSecs;
-//    char   albumTitle[maxChar];
-//    int    index;
-    int matches = 0;
+    char artistName[maxChar];
+    int  matches = 0;
     
     cout << "enter the artist you would like to search for: " << endl;
     
@@ -295,7 +288,7 @@ void SongList::searchForArtist() const {
     
     for(int i=0; i < songListSize; i++){
         listOfSongs[i].getArtistName(artistName);
-        if(strcmp(artistName, currentArtist) == 0){
+        if(strcmp(artistName, searchTerm) == 0){
             matches++;
             listOfSongs[i].printSong();
         }
@@ -307,17 +300,10 @@ void SongList::searchForArtist() const {
 }
 
 //search by album
-//SongList::searchForAlbum(const char searchTerm[], Song& matchingSong){
 void SongList::searchForAlbum() const {
     char searchTerm[maxChar];
-    char currentAlbum[maxChar];
-//    char   songTitle[maxChar];
-//    char   artistName[maxChar];
-//    int    songMins;
-//    int    songSecs;
-    char   albumTitle[maxChar];
-//    int    index;
-    int matches = 0;
+    char albumTitle[maxChar];
+    int  matches = 0;
     
     cout << "enter the album you would like to search for: " << endl;
     
@@ -333,7 +319,7 @@ void SongList::searchForAlbum() const {
     
     for(int i=0; i < songListSize; i++){
         listOfSongs[i].getAlbumTitle(albumTitle);
-        if(strcmp(albumTitle, currentAlbum) == 0){
+        if(strcmp(albumTitle, searchTerm) == 0){
             matches++;
             listOfSongs[i].printSong();
         }
