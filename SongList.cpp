@@ -13,8 +13,8 @@
 
 using namespace std;
 
-SongList::SongList(){
-    songListSize = 0;
+SongList::SongList(int& listSize){
+    this->songListSize = listSize;
 }
 
 SongList::SongList(const char fileName[]){
@@ -115,15 +115,11 @@ void SongList::saveLibrary(const char fileName[]) const {
     for(int i = 0; i < songListSize; i++){
         listOfSongs[i].getSongTitle(songTitle);
         listOfSongs[i].getArtistName(artistName);
-        cout << songMins << " songMins 1" << endl;
         listOfSongs[i].getSongMins(songMins);
-        cout << songMins << " songMins 2" << endl;
         listOfSongs[i].getSongSecs(songSecs);
         listOfSongs[i].getAlbumTitle(albumTitle);
         listOfSongs[i].getIndex(index);
         
-        cout << songTitle << ';' << artistName << ';' << songMins << ';' << songSecs << ';' << albumTitle << ';' << index << endl;
-
         outfile << songTitle << ';' << artistName << ';' << songMins << ';' << songSecs << ';' << albumTitle << ';' << index << endl;
     }
     
@@ -206,11 +202,6 @@ void SongList::addSong(){
     addedSong.getSongSecs(songSecs);
     addedSong.getAlbumTitle(albumTitle);
     addedSong.getIndex(index);
-    
-    int testSongMins = -1;
-    addedSong.getSongMins(testSongMins);
-
-    cout << " Test Song Mins" << testSongMins << endl;
 
     listOfSongs[songListSize].setSongTitle(songTitle);
     listOfSongs[songListSize].setArtistName(artistName);
@@ -222,68 +213,81 @@ void SongList::addSong(){
     songListSize++;
 }
 
-//remove a song
-//void Songlist::removeSong(const SongList& library){
-//    
-//    char     songTitle[maxChar];
-//    char     artistName[maxChar];
-//    int      songMins;
-//    int      songSecs;
-//    char     albumTitle[maxChar];
-//    int      index;
-//    
-//    int removeableIndex;
-//    int tempListSize = library.getSongListSize();
-//    char tempList[tempListSize];
-//    bool indexFound = false;
-//    
-//    cout << "Please enter the index of the song that you would like to remove:" << endl;
-//    cin >> removeableIndex;
-//    
-//    while(!cin || removeableIndex >= songListSize){
-//        cin.clear();
-//        cin.ignore(100, '\n');
-//        cout << "That is not a valid index, please try again:" << endl;
-//        cin >> removeableIndex;
-//    }
-//    
-//    for(int i = 0; i < tempListSize; i++){
-//        if(indexFound == true){
-//            tempList[i] = songList[i+1];
-//        } else if(i == removeableIndex){
-//            indexFound = true;
-//            tempList[i] = songList[i+1];
-//        } else {
-//            tempList[i] = songList[i];
-//        }
-//    }
-//    tempListSize--;
-//    library.setSongListSize();
-//    
-//    for(int j = 0; j < songListSize; j++){
-//        songList[j] = tempList[j];
-//    }
-//    
-//    
-//    
-//    addedSong.getSongTitle(songTitle);
-//    addedSong.getArtistName(artistName);
-//    addedSong.getSongMins(songMins);
-//    addedSong.getSongSecs(songSecs);
-//    addedSong.getAlbumTitle(albumTitle);
-//    addedSong.getIndex(index);
-//    
-//    listOfSongs[songListSize].setSongTitle(songTitle);
-//    listOfSongs[songListSize].setArtistName(artistName);
-//    listOfSongs[songListSize].setSongMins(songMins);
-//    listOfSongs[songListSize].setSongSecs(songSecs);
-//    listOfSongs[songListSize].setAlbumTitle(albumTitle);
-//    listOfSongs[songListSize].setIndex(index);
-//    
-//    
-//    cout << "the song with index " << removeableIndex << " has been removed." << endl;
-//    
-//}
+// remove a song
+void SongList::removeSong(){
+   
+   char     songTitle[maxChar];
+   char     artistName[maxChar];
+   int      songMins;
+   int      songSecs;
+   char     albumTitle[maxChar];
+   int      index;
+   // Song     addedSong;
+   int      removeableIndex;
+   // int      tempListSize = getSongListSize() - 1;
+   // SongList tempList(tempListSize);
+   bool     indexFound = false;
+   
+   cout << "Please enter the index of the song that you would like to remove:" << endl;
+   cin >> removeableIndex;
+   
+   while(!cin || removeableIndex >= songListSize){
+       cin.clear();
+       cin.ignore(100, '\n');
+       cout << "That is not a valid index, please try again:" << endl;
+       cin >> removeableIndex;
+   }
+   cin.ignore(maxChar, '\n');
+
+   for(int i = 0; i < songListSize; i++){
+       if(indexFound == true){
+        
+
+           listOfSongs[i + 1].getSongTitle(songTitle);
+           listOfSongs[i + 1].getArtistName(artistName);
+           listOfSongs[i + 1].getSongMins(songMins);
+           listOfSongs[i + 1].getSongSecs(songSecs);
+           listOfSongs[i + 1].getAlbumTitle(albumTitle);
+           listOfSongs[i + 1].getIndex(index);
+
+           index--;
+
+           listOfSongs[i].setSongTitle(songTitle);
+           listOfSongs[i].setArtistName(artistName);
+           listOfSongs[i].setSongMins(songMins);
+           listOfSongs[i].setSongSecs(songSecs);
+           listOfSongs[i].setAlbumTitle(albumTitle);
+           listOfSongs[i].setIndex(index);
+
+       } else if(i == removeableIndex){
+           indexFound = true;
+           
+           listOfSongs[i + 1].getSongTitle(songTitle);
+           listOfSongs[i + 1].getArtistName(artistName);
+           listOfSongs[i + 1].getSongMins(songMins);
+           listOfSongs[i + 1].getSongSecs(songSecs);
+           listOfSongs[i + 1].getAlbumTitle(albumTitle);
+           listOfSongs[i + 1].getIndex(index);
+
+           index--;
+
+           listOfSongs[i].setSongTitle(songTitle);
+           listOfSongs[i].setArtistName(artistName);
+           listOfSongs[i].setSongMins(songMins);
+           listOfSongs[i].setSongSecs(songSecs);
+           listOfSongs[i].setAlbumTitle(albumTitle);
+           listOfSongs[i].setIndex(index);
+       } else {
+
+        cout << "searching by index..." << endl;
+       }
+   }
+
+      songListSize--;
+   
+   cout << "the song with index " << removeableIndex << " has been removed." << endl;
+   
+}
 
 //search by artist
 void SongList::searchForArtist() const {

@@ -50,7 +50,7 @@ void runUserChoice(int programChoice, char fileName[], SongList library){
             break;
         case 2:
             cout << "you have chosen option 2:" << endl;
-//            library.removeSong(fileName, songList...);
+           library.removeSong();
             library.saveLibrary(fileName);
             break;
         case 3:
@@ -79,8 +79,6 @@ int main()
     int      programChoice;
     char     fileName[] = "songs.txt";
     SongList library(fileName);
-    
-//    library.readLibrary(fileName);
     
     cout << "Welcome to the music library interface!" << endl;
     

@@ -31,7 +31,7 @@ Song::Song(char songTitle[], char artistName[], int songMins, int songSecs, char
     this->index = index;
 }
 
-//following functions will returns each parameter
+//following functions will sets the internal value to the parameter
 void Song::getSongTitle(char songTitle[]) const{
     strcpy(songTitle, this->songTitle);
 }
