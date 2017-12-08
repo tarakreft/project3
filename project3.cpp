@@ -63,7 +63,7 @@ void runUserChoice(int programChoice, char fileName[], SongList library){
             break;
         case 5:
             cout << "you have chosen option 5:" << endl;
-            library.addSong(addedSong);
+            library.addSong();
             library.saveLibrary(fileName);
             break;
         case 6:

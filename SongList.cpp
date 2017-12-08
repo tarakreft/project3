@@ -115,11 +115,15 @@ void SongList::saveLibrary(const char fileName[]) const {
     for(int i = 0; i < songListSize; i++){
         listOfSongs[i].getSongTitle(songTitle);
         listOfSongs[i].getArtistName(artistName);
+        cout << songMins << " songMins 1" << endl;
         listOfSongs[i].getSongMins(songMins);
+        cout << songMins << " songMins 2" << endl;
         listOfSongs[i].getSongSecs(songSecs);
         listOfSongs[i].getAlbumTitle(albumTitle);
         listOfSongs[i].getIndex(index);
         
+        cout << songTitle << ';' << artistName << ';' << songMins << ';' << songSecs << ';' << albumTitle << ';' << index << endl;
+
         outfile << songTitle << ';' << artistName << ';' << songMins << ';' << songSecs << ';' << albumTitle << ';' << index << endl;
     }
     
@@ -132,13 +136,14 @@ int SongList::getSongListSize() const {
 }
 
 //add a song
-void SongList::addSong(const Song& addedSong){
+void SongList::addSong(){
     
     char     songTitle[maxChar];
     char     artistName[maxChar];
     int      songMins;
     int      songSecs;
     char     albumTitle[maxChar];
+    Song     addedSong;
     int      index = getSongListSize();
     
     cout << "Please enter the title of the song you are add to the library:";
@@ -167,7 +172,8 @@ void SongList::addSong(const Song& addedSong){
         cout << "Not Valid. Please re-enter the minutes:" << endl;
         cin >> songMins;
     }
-    
+    cin.ignore(maxChar, '\n');
+
     cout << "Please enter the seconds of the song you are adding to the library:";
     cin >> songSecs;
     while(!cin){
@@ -176,7 +182,8 @@ void SongList::addSong(const Song& addedSong){
         cout << "Not Valid. Please re-enter the seconds:" << endl;
         cin >> songSecs;
     }
-    
+    cin.ignore(maxChar, '\n');
+
     cout << "Please enter the album title of the song you are adding to the library:";
     cin.getline(albumTitle, maxChar, '\n');
     while(!cin){
@@ -186,6 +193,13 @@ void SongList::addSong(const Song& addedSong){
         cin.getline(albumTitle, maxChar, '\n');
     }
     
+    addedSong.setSongTitle(songTitle);
+    addedSong.setArtistName(artistName);
+    addedSong.setSongMins(songMins);
+    addedSong.setSongSecs(songSecs);
+    addedSong.setAlbumTitle(albumTitle);
+    addedSong.setIndex(index);
+    
     addedSong.getSongTitle(songTitle);
     addedSong.getArtistName(artistName);
     addedSong.getSongMins(songMins);
@@ -193,13 +207,18 @@ void SongList::addSong(const Song& addedSong){
     addedSong.getAlbumTitle(albumTitle);
     addedSong.getIndex(index);
     
+    int testSongMins = -1;
+    addedSong.getSongMins(testSongMins);
+
+    cout << " Test Song Mins" << testSongMins << endl;
+
     listOfSongs[songListSize].setSongTitle(songTitle);
     listOfSongs[songListSize].setArtistName(artistName);
     listOfSongs[songListSize].setSongMins(songMins);
     listOfSongs[songListSize].setSongSecs(songSecs);
     listOfSongs[songListSize].setAlbumTitle(albumTitle);
     listOfSongs[songListSize].setIndex(index);
-    
+    addedSong.printSong();
     songListSize++;
 }
 

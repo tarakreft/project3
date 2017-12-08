@@ -40,11 +40,11 @@ void Song::getArtistName(char artistName[]) const{
     strcpy(artistName, this->artistName);
 }
 
-void Song::getSongMins(int songMins) const{
+void Song::getSongMins(int& songMins) const{
     songMins = this->songMins;
 }
 
-void Song::getSongSecs(int songSecs) const{
+void Song::getSongSecs(int& songSecs) const{
     songSecs = this->songSecs;
 }
 
@@ -52,13 +52,13 @@ void Song::getAlbumTitle(char albumTitle[]) const{
     strcpy(albumTitle, this->albumTitle);
 }
 
-void Song::getIndex(int index) const{
+void Song::getIndex(int& index) const{
     index = this->index;
 }
 
 //print function
 void Song::printSong() const{
-    cout << left << setw(maxChar) << songTitle << setw(maxChar) << artistName << setw(7) << songMins << setw(1) << " " << setw(7) << songSecs << setw(maxChar) << albumTitle << setw(5) << index << endl;
+    cout << left << setw(maxChar) << songTitle << setw(maxChar) << artistName << setw(7) << songMins << setw(7) << songSecs << setw(maxChar) << albumTitle << setw(5) << index << endl;
 }
 
 //following functions set the song values

@@ -20,7 +20,7 @@ public:
     void readLibrary(const char fileName[]);
     void saveLibrary(const char fileName[]) const;
     int  getSongListSize() const;
-    void addSong(const Song& addedSong);
+    void addSong();
 //    void removeSong(const Song& addedSong);
     void searchForArtist() const;
     void searchForAlbum() const;

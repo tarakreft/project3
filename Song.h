@@ -17,10 +17,10 @@ public:
     
     void getSongTitle(char songTitle[]) const;
     void getArtistName(char artistName[]) const;
-    void getSongMins(int songMins) const;
-    void getSongSecs(int songSecs) const;
+    void getSongMins(int& songMins) const;
+    void getSongSecs(int& songSecs) const;
     void getAlbumTitle(char albumtTitle[]) const;
-    void getIndex(int index) const;
+    void getIndex(int& index) const;
     void printSong() const;
     
     void setSongTitle(const char songTitle[]);
